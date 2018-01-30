@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>DOM Manipulation | GMT Courses</title>
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		
+		<link rel="shortcut icon" href="https://courses.gomakethings.com/img/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32" href="https://courses.gomakethings.com/img/favicon.ico">
+
+		
+		<link rel="stylesheet" href="https://courses.gomakethings.com/css/main.css">
+
+		
+		<script src="https://courses.gomakethings.com/js/detects.js"></script>
+		<script>
+			;(function () {
+				var css = 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i';
+				if (getCookie('fontsLoaded')) {
+					loadCSS(css);
+					document.documentElement.className += 'fonts-loaded';
+				} else {
+					loadCSS(css);
+					var font = new FontFaceObserver('PT Serif');
+					font.load().then(function () {
+						var expires = new Date(+new Date() + (7 * 24 * 60 * 60 * 1000)).toUTCString();
+						document.cookie = 'fontsLoaded=true; expires=' + expires;
+						document.documentElement.className += ' fonts-loaded';
+					});
+				}
+			})();
+
+			
+			var loggedIn = sessionStorage.getItem('gmtCoursesLoggedIn');
+			if (loggedIn) {
+				document.documentElement.className += ' logged-in';
+				
+			}
+		</script>
+	</head>
+
+	<body class="type-dashboard page-list" id="page-dea80c0087a352c686da0be84308bc51">
+
+		<div class="container container-large">
+
+	
+	<a class="screen-reader screen-reader-focusable" href="#main">Skip to main content</a>
+
+	
+	<a class="screen-reader screen-reader-focusable" href="mailto:&#099;&#104;&#114;&#105;&#115;&#064;&#103;&#111;&#109;&#097;&#107;&#101;&#116;&#104;&#105;&#110;&#103;&#115;&#046;&#099;&#111;&#109;?subject=Go%20Make%20Things:%20Accessibility%20Feedback">Accessibility Feedback</a>
+
+</div>
+
+		<header class="container container-large margin-bottom-large">
+	<nav class="nav-wrap">
+		<a class="logo" href="https://courses.gomakethings.com">
+			<svg xmlns="http://www.w3.org/2000/svg" style="height:.8em;width:.8em" viewBox="0 0 16 16"><title></title><path fill="currentColor" d="M14 9v2.066c-1.258 1.285-3.016 2.526-5 2.852V8.001h3v-1L9 5.83A3.001 3.001 0 0 0 8 .001 3 3 0 0 0 7 5.83L4 7.001v1h3v5.917c-1.984-.326-3.742-1.567-5-2.852V9H0v1c0 2 4 6 8 6s8-4 8-6V9h-2zM9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+			GMT Courses
+		</a>
+		<div class="nav-menu" id="nav-menu">
+			<ul class="nav app-logged-in" id="nav-li">
+				<li class="active"><a href="https://courses.gomakethings.com/dashboard">Your Courses</a></li><li><a href="https://courses.gomakethings.com/resources">Resources</a></li><li><a id="logout" href="https://courses.gomakethings.com/logout">Logout</a></li>
+			</ul>
+			<ul class="nav app-logged-out" id="nav-lo">
+				<li><a href="https://courses.gomakethings.com">Sign In</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>
+
+		<main id="main" tabindex="-1">
+
+			<div class="container">
+
+
+	<div class="app-logged-out">
+	<h1>Sign In</h1>
+
+	<form id="login-form">
+		<div class="row">
+			<div class="grid-third text-right-large">
+				<label for="email">Email</label>
+			</div>
+			<div class="grid-two-thirds">
+				<input type="email" name="email" id="email">
+			</div>
+		</div>
+		<div class="row">
+			<div class="grid-third text-right-large">
+				<label for="password">Password</label>
+			</div>
+			<div class="grid-two-thirds">
+				<input type="password" name="password" id="password">
+			</div>
+		</div>
+		<div class="row">
+			<div class="grid-two-thirds offset-third">
+				<button class="btn">Sign In</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<article class="app-logged-in">
+
+	
+	<h1>DOM Manipulation</h1>
+	
+
+	<p>Learn how to get DOM elements and do awesome stuff with them. Together, we’ll write a working project with DOM manipulation.</p>
+
+
+</article>
+
+
+<div class="app-logged-in">
+
+
+	
+
+		
+
+		
+
+			
+			
+			<h2 class="h5 no-padding-top margin-bottom-small">Intro</h2>
+
+			<ol>
+			
+
+				<li>
+					<a href="/dashboard/dom-manipulation/1.-intro/">Introduction</a>
+				</li>
+
+			
+
+		
+			</ol>
+
+		
+			<p>
+				<strong>&lt;/&gt; <a href="https://github.com/cferdinandi/dom-manipulation-source-code">Download the Source Code</a></strong>
+			</p>
+		
+
+	
+
+
+</div>
+
+
+			</div>
+		</main>
+
+		<footer class="container container-large">
+			<hr class="margin-bottom">
+			<p class="margin-bottom-small">
+				<a class="link-plain" href="https://gomakethings.com">
+					<strong>
+						<svg xmlns="http://www.w3.org/2000/svg" style="height:.8em;width:.8em" viewBox="0 0 16 16"><title></title><path fill="currentColor" d="M14 9v2.066c-1.258 1.285-3.016 2.526-5 2.852V8.001h3v-1L9 5.83A3.001 3.001 0 0 0 8 .001 3 3 0 0 0 7 5.83L4 7.001v1h3v5.917c-1.984-.326-3.742-1.567-5-2.852V9H0v1c0 2 4 6 8 6s8-4 8-6V9h-2zM9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+						Go Make Things
+					</strong>
+				</a>
+			</p>
+			<p class="text-small">Made with ❤️ in Massachussets. Unless otherwise noted, all code is free to use under the <a href="/mit">MIT License</a>.</p>
+		</footer>
+
+		<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+		<script src='https://courses.gomakethings.com/js/main.js'></script>
+		<script>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+
+		<noscript><p><img src="//analytics.gomakethings.com/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+	</body>
+</html>

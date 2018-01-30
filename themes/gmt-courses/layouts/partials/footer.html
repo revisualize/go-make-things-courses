@@ -1,0 +1,36 @@
+			</div>
+		</main>
+
+		<footer class="container container-large">
+			<hr class="margin-bottom">
+			<p class="margin-bottom-small">
+				<a class="link-plain" href="https://gomakethings.com">
+					<strong>
+						<svg xmlns="http://www.w3.org/2000/svg" style="height:.8em;width:.8em" viewBox="0 0 16 16"><title></title><path fill="currentColor" d="M14 9v2.066c-1.258 1.285-3.016 2.526-5 2.852V8.001h3v-1L9 5.83A3.001 3.001 0 0 0 8 .001 3 3 0 0 0 7 5.83L4 7.001v1h3v5.917c-1.984-.326-3.742-1.567-5-2.852V9H0v1c0 2 4 6 8 6s8-4 8-6V9h-2zM9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+						Go Make Things
+					</strong>
+				</a>
+			</p>
+			<p class="text-small">Made with ❤️ in Massachussets. Unless otherwise noted, all code is free to use under the <a href="/mit">MIT License</a>.</p>
+		</footer>
+
+		<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+		<script src='{{ if eq $.Site.Params.cacheBust true }}{{ ( printf "/js/main.min.%s.js" $.Site.Params.version | absURL ) }}{{ else }}{{ "/js/main.js" | absURL }}{{ end }}'></script>
+		<script>
+			// // Analytics
+			// var _paq = _paq || [];
+			// // tracker methods like "setCustomDimension" should be called before "trackPageView"
+			// _paq.push(['trackPageView']);
+			// _paq.push(['enableLinkTracking']);
+			// (function() {
+			// 	var u="//analytics.gomakethings.com/";
+			// 	_paq.push(['setTrackerUrl', u+'piwik.php']);
+			// 	_paq.push(['setSiteId', '1']);
+			// 	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			// 	g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+			// })();
+		</script>
+
+		<noscript><p><img src="//analytics.gomakethings.com/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+	</body>
+</html>

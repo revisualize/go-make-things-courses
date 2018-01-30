@@ -1,0 +1,15 @@
+{{- range where .Site.Pages "Type" "dashboard" -}}
+	{{- $.Scratch.Add "courses" slice -}}
+	{{- if and ( eq .Draft false ) .Params.courseid -}}
+		{{- $.Scratch.Set "lessons" slice -}}
+		{{- range sort .Pages "URL" -}}
+			{{- $.Scratch.Add "lessons" ( dict "id" .UniqueID "title" .Title "url" .URL "video" .Params.video "content" ( .Content | markdownify | htmlEscape ) ) -}}
+		{{- end -}}
+		{{- $.Scratch.Add "courses" ( dict "id" .Params.courseid "title" .Title "url" .URL "lessons" ( $.Scratch.Get "lessons" ) ) -}}
+	{{- end -}}
+{{- end -}}
+{{- $.Scratch.Add "resources" slice -}}
+{{- range .Site.Data.resources -}}
+	{{ $.Scratch.Add "resources" ( dict "title" .title "url" .url ) }}
+{{- end -}}
+{{- ( dict "courses" ( $.Scratch.Get "courses" ) "resources" ( $.Scratch.Get "resources" ) ) | jsonify -}}

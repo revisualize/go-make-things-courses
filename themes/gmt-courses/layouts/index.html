@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+{{ partial "content-page.html" . }}
+
+{{ if not .Params.noLogin }}
+<div class="app-logged-in">
+
+	<div data-app="dashboard">
+		<ul>
+			<li><div class="placeholder placeholder-li"></div></li>
+			<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+			<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+			<li><div class="placeholder placeholder-li"></div></li>
+		</ul>
+	</div>
+
+</div>
+{{ end }}
+
+{{ partial "footer.html" . }}

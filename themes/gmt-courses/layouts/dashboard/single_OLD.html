@@ -1,0 +1,51 @@
+{{ partial "header.html" . }}
+
+<div hidden>
+	You don't have access to this content.
+</div>
+
+<div>
+	<h1>{{ .Title }}</h1>
+
+	<div class="margin-bottom">
+		{{ if .Params.vimeo }}
+		<iframe src='https://player.vimeo.com/video/{{ .Params.vimeo }}?title=0&byline=0&portrait=0' width="640" height="388" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		{{ else if .Params.youtube }}
+		<iframe width="560" height="315" src='https://www.youtube.com/embed/{{ .Params.youtube }}?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media' allowfullscreen></iframe>
+		{{ end }}
+	</div>
+
+	{{ $.Scratch.Set "currentPage" .URL }}
+	{{ $.Scratch.Set "nextPage" "" }}
+	{{ $.Scratch.Set "prevPage" false }}
+
+	<div class="clearfix">
+		{{ range sort .Parent.Pages "URL" "desc" }}
+
+			{{ if eq ( $.Scratch.Get "currentPage" ) .URL }}
+				{{ if eq ( $.Scratch.Get "nextPage" ) "" }}
+				<a class="btn float-right" href='{{ .Parent.URL }}'>Home &rarr;</a>
+				{{ else }}
+				<a class="btn float-right" href='{{ $.Scratch.Get "nextPage" }}'>Next Lesson &rarr;</a>
+				{{ end }}
+			{{ end }}
+
+			{{ if ( $.Scratch.Get "prevPage" ) }}
+				<a href='{{ .URL }}'>&larr; Previous Lesson</a>
+				{{ $.Scratch.Set "prevPage" false }}
+			{{ end }}
+
+			{{ if eq ( $.Scratch.Get "currentPage" ) .URL }}
+				{{ $.Scratch.Set "prevPage" true }}
+			{{ end }}
+
+			{{ $.Scratch.Set "nextPage" .URL }}
+
+		{{ end }}
+	</div>
+
+
+	{{ .Content }}
+</div>
+
+{{ partial "footer.html" . }}

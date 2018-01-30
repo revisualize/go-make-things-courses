@@ -1,0 +1,15 @@
+/**
+ * @section App
+ * Styling for app containers
+ */
+
+.logged-in .app-logged-out,
+.app-logged-in {
+	display: none;
+	visibility: hidden;
+}
+
+.logged-in .app-logged-in {
+	display: block;
+	visibility: visible;
+}

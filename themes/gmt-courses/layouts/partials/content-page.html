@@ -1,0 +1,13 @@
+{{ if not .Params.noLogin }}
+	{{ partial "login.html" }}
+{{ end }}
+
+<article{{ if not .Params.noLogin }} class="app-logged-in"{{ end }}>
+
+	{{ if not .Params.noTitle }}
+	<h1>{{ ( .Title | htmlUnescape ) }}</h1>
+	{{ end }}
+
+	{{ .Content }}
+
+</article>

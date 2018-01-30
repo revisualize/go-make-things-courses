@@ -1,0 +1,46 @@
+# hostname (and path) to the root
+baseURL: "https://courses.gomakethings.com"
+
+# Customer parameters
+params:
+  description: "Vanilla JavaScript for beginners and designers."
+  rssURL: "http://feeds.feedburner.com/GoMakeThings"
+  rssLimit: 7
+  cacheBust: false
+  version: "1.0.0"
+
+# The language code for the site
+languageCode: "en-us"
+
+# Site title
+title: "GMT Courses"
+
+# theme to use (located by default in /themes/THEMENAME/)
+theme: "gmt-courses"
+
+# Permalinks
+# See "content-management/permalinks"
+permalinks: /:filename/
+
+# Allows you to disable all page types and will render nothing related to 'kind';
+# values = "page", "home", "section", "taxonomy", "taxonomyTerm", "RSS", "sitemap", "robotsTXT", "404"
+disableKinds: ["RSS", "hugoGeneratorInject", "404"]
+
+# Files to ignore while rendering
+ignoreFiles: ["/content/articles/_2018-01-19-title.md"]
+
+# the length of text to show in a .Summary
+summaryLength: 70
+
+# Pagination
+paginate: 35
+paginatePath: "page"
+
+# Markdown Options
+blackfriday:
+  fractions: false
+
+# Site taxonomies
+taxonomies:
+  - category: "categories"
+  - tag: "tags"
