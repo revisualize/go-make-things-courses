@@ -275,8 +275,8 @@ var app = function () {
 		clearFormError();
 		getAjax({
 			action: 'gmt_courses_change_password',
-			currentpw: currentPW.value,
-			newpw: newPW.value
+			current_password: currentPW.value,
+			new_password: newPW.value
 		}, function (data) {
 			enableButton();
 			if (data.code === 200) {
