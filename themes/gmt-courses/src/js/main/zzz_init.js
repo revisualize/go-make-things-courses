@@ -10,3 +10,6 @@ fluidvids.init({
 
 // Load app
 app();
+
+// Toggle password visibility
+xray.init();
