@@ -252,6 +252,32 @@ var app = function () {
 		});
 	};
 
+	var processChangePW = function (form) {
+		var currentPW = form.querySelector('#current-password');
+		var newPW = form.querySelector('#new-password');
+		var error = document.querySelector('#form-error');
+		if (!currentPW || !newPW || currentPW.value.length < 1 || newPW.value.length < 1) {
+			throwFormError('Please fill in all fields.');
+			return;
+		}
+		disableButton();
+		error.innerHTML = '';
+		getAjax({
+			action: 'gmt_courses_change_password',
+			currentpw: currentPW.value,
+			newpw: newPW.value
+		}, function (data) {
+			enableButton();
+			if (data.code === 200) {
+				throwFormError(data.message, true);
+				currentPW.value = '';
+				newPW.value = '';
+			} else {
+				throwFormError(data.message);
+			}
+		});
+	};
+
 	var validate = function () {
 		if (!document.querySelector('#validate-user')) return;
 		var params = getParams(window.location.href);
@@ -280,12 +306,16 @@ var app = function () {
 		if (event.target.matches('#login-form')) {
 			event.preventDefault();
 			processLogin(event.target);
-			return;
 		}
 
-		if (event.target.matches('#join-form')) {
+		else if (event.target.matches('#join-form')) {
 			event.preventDefault();
 			processJoin(event.target);
+		}
+
+		else if (event.target.matches('#change-password-form')) {
+			event.preventDefault();
+			processChangePW(event.target);
 		}
 	};
 
