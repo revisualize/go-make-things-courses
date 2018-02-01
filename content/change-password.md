@@ -6,4 +6,6 @@ noTitle: false
 noLogin: false
 ---
 
+Please choose a new password that's at least 8 characters long.
+
 {{<change-password>}}
