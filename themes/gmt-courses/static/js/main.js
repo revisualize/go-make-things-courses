@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.3.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.4.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -183,6 +183,27 @@ var app = function () {
 		}));
 	};
 
+	var disableButton = function () {
+		var btn = document.querySelector('#submit');
+		if (!btn) return;
+		var processing = btn.getAttribute('data-processing');
+		if (processing) {
+			btn.setAttribute('data-original', btn.innerHTML);
+			btn.innerHTML = processing;
+		}
+		btn.setAttribute('disabled', 'disabled');
+	};
+
+	var enableButton = function () {
+		var btn = document.querySelector('#submit');
+		if (!btn) return;
+		var original = btn.getAttribute('data-original');
+		if (original) {
+			btn.innerHTML = original;
+		}
+		btn.removeAttribute('disabled');
+	};
+
 	var throwFormError = function (msg, success) {
 		var error = document.querySelector('#form-error');
 		if (!error) return;
@@ -193,19 +214,21 @@ var app = function () {
 	var processLogin = function (form) {
 		var email = form.querySelector('#email');
 		var pw = form.querySelector('#password');
+		var error = document.querySelector('#form-error');
 		if (!email || !pw || email.value.length < 1 || pw.value.length < 1) {
 			throwFormError('Please fill in all fields.');
 			return;
 		}
+		disableButton();
+		error.innerHTML = '';
 		getAjax({
 			action: 'gmt_courses_login',
 			username: email.value,
 			password: pw.value
 		}, (function (data) {
+			enableButton();
 			if (data.code === 200) {
 				document.documentElement.className += ' logged-in';
-				email.value = '';
-				pw.value = '';
 				fetchCourses();
 			} else {
 				throwFormError(data.message);
@@ -221,12 +244,14 @@ var app = function () {
 			throwFormError('Please fill in all fields.');
 			return;
 		}
+		disableButton();
 		error.innerHTML = '';
 		getAjax({
 			action: 'gmt_courses_create_user',
 			username: email.value,
 			password: pw.value
 		}, (function (data) {
+			enableButton();
 			if (data.code === 200) {
 				form.parentNode.innerHTML = '<p>' + data.message + '</p>';
 			} else {
