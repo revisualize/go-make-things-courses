@@ -7,6 +7,18 @@
  */
 
 /**
+ * NodeList.prototype.forEach() polyfill
+ * https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Polyfill
+ */
+if (window.NodeList && !NodeList.prototype.forEach) {
+	NodeList.prototype.forEach = function (callback, thisArg) {
+		thisArg = thisArg || window;
+		for (var i = 0; i < this.length; i++) {
+			callback.call(thisArg, this[i], i, this);
+		}
+	};
+}
+/**
  * Run the web app
  */
 var app = function () {
@@ -184,31 +196,42 @@ var app = function () {
 	};
 
 	var disableButton = function () {
-		var btn = document.querySelector(getData() ? '.logged-in-submit' : '.logged-out-submit');
-		if (!btn) return;
-		var processing = btn.getAttribute('data-processing');
-		if (processing) {
-			btn.setAttribute('data-original', btn.innerHTML);
-			btn.innerHTML = processing;
-		}
-		btn.setAttribute('disabled', 'disabled');
+		var btns = document.querySelectorAll('[data-submit]');
+		btns.forEach((function (btn) {
+			var processing = btn.getAttribute('data-processing');
+			if (processing) {
+				btn.setAttribute('data-original', btn.innerHTML);
+				btn.innerHTML = processing;
+			}
+			btn.setAttribute('disabled', 'disabled');
+		}));
 	};
 
 	var enableButton = function () {
-		var btn = document.querySelector(getData() ? '.logged-in-submit' : '.logged-out-submit');
-		if (!btn) return;
-		var original = btn.getAttribute('data-original');
-		if (original) {
-			btn.innerHTML = original;
-		}
-		btn.removeAttribute('disabled');
+		var btns = document.querySelectorAll('[data-submit]');
+		btns.forEach((function (btn) {
+			var original = btn.getAttribute('data-original');
+			if (original) {
+				btn.innerHTML = original;
+			}
+			btn.removeAttribute('disabled');
+		}));
 	};
 
 	var throwFormError = function (msg, success) {
-		var error = document.querySelector('#form-error');
-		if (!error) return;
-		error.innerHTML = msg;
-		error.className = success ? 'success-message' : 'error-message';
+		var errors = document.querySelectorAll('[data-form-error]');
+		errors.forEach((function (error) {
+			error.innerHTML = msg;
+			error.className = success ? 'success-message' : 'error-message';
+		}));
+	};
+
+	var clearFormError = function () {
+		var errors = document.querySelectorAll('[data-form-error]');
+		errors.forEach((function (error) {
+			error.innerHTML = '';
+			error.className = '';
+		}));
 	};
 
 	var processLogin = function (form) {
@@ -220,7 +243,7 @@ var app = function () {
 			return;
 		}
 		disableButton();
-		error.innerHTML = '';
+		clearFormError();
 		getAjax({
 			action: 'gmt_courses_login',
 			username: email.value,
@@ -245,7 +268,7 @@ var app = function () {
 			return;
 		}
 		disableButton();
-		error.innerHTML = '';
+		clearFormError();
 		getAjax({
 			action: 'gmt_courses_create_user',
 			username: email.value,
@@ -269,7 +292,7 @@ var app = function () {
 			return;
 		}
 		disableButton();
-		error.innerHTML = '';
+		clearFormError();
 		getAjax({
 			action: 'gmt_courses_change_password',
 			currentpw: currentPW.value,
