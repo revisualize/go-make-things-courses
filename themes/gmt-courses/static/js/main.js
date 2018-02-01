@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.2.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.3.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -183,11 +183,11 @@ var app = function () {
 		}));
 	};
 
-	var throwFormError = function (msg) {
+	var throwFormError = function (msg, success) {
 		var error = document.querySelector('#form-error');
 		if (!error) return;
 		error.innerHTML = msg;
-		error.classList.add('error-message');
+		error.className = success ? 'success-message' : 'error-message';
 	};
 
 	var processLogin = function (form) {
@@ -244,7 +244,8 @@ var app = function () {
 			username: params.email,
 			key: params.key
 		}, (function (data) {
-			throwFormError(data.message);
+			var success = data.code === 200 ? true : false;
+			throwFormError(data.message, success);
 		}));
 	};
 

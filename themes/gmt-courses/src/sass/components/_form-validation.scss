@@ -3,8 +3,12 @@
  * Styling for form validation
  */
 
-.error-message {
-	color: darken( $color-secondary, 25% );
+.error-message,
+.success-message {
 	font-style: italic;
 	margin-bottom: 1em;
+}
+
+.error-message {
+	color: darken( $color-secondary, 25% );
 }

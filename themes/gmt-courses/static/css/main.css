@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.2.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.3.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -1224,10 +1224,15 @@ button:-moz-focusring,
  * Styling for form validation
  */
 /* line 6, src/sass/components/_form-validation.scss */
-.error-message {
-  color: #e30810;
+.error-message,
+.success-message {
   font-style: italic;
   margin-bottom: 1em;
+}
+
+/* line 12, src/sass/components/_form-validation.scss */
+.error-message {
+  color: #e30810;
 }
 
 /*  Adds a border */
