@@ -15,7 +15,7 @@
 		</footer>
 
 		<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-		<script src='{{ if eq $.Site.Params.cacheBust true }}{{ ( printf "/js/main.min.%s.js" $.Site.Params.version | absURL ) }}{{ else }}{{ "/js/main.js" | absURL }}{{ end }}'></script>
+		<script src='{{ if eq $.Site.Params.cacheBust true }}{{ printf "/js/main.min.%s.js" $.Site.Params.version }}{{ else }}/js/main.js{{ end }}'></script>
 		<script>
 			// // Analytics
 			// var _paq = _paq || [];

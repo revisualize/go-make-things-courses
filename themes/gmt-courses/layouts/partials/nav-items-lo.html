@@ -1,1 +1,1 @@
-<li{{ if .IsHome }} class="active"{{ end }}><a href="{{ .Site.BaseURL }}">Sign In</a></li>
+<li{{ if .IsHome }} class="active"{{ end }}><a href="{{ .Site.BaseURL }}">Sign In</a></li><li{{ if eq .URL "/join/" }} class="active"{{ end }}><a href="/join">Create an Account</a></li>

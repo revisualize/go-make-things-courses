@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.0.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.1.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -17,16 +17,31 @@ var app = function () {
 	// Variables
 	//
 
-	var codeMap = {
-		polyfills: [25501], // Beginner
-		classList: [], // Advanced
-		querySelector: [25501] // Complete
-	};
+	var baseURL = 'https://courses.gomakethings.com';
 
 
 	//
 	// Methods
 	//
+
+	/**
+	 * Get the URL parameters
+	 * source: https://css-tricks.com/snippets/javascript/get-url-variables/
+	 * @param  {String} url The URL
+	 * @return {Object}     The URL parameters
+	 */
+	var getParams = function (url) {
+		var params = {};
+		var parser = document.createElement('a');
+		parser.href = url;
+		var query = parser.search.substring(1);
+		var vars = query.split('&');
+		for (var i=0; i < vars.length; i++) {
+			var pair = vars[i].split("=");
+			params[pair[0]] = decodeURIComponent(pair[1]);
+		}
+		return params;
+	};
 
 	var decodeHTML = function (html) {
 		var txt = document.createElement('textarea');
@@ -34,13 +49,8 @@ var app = function () {
 		return txt.value;
 	};
 
-	var getUserCourses = function (data, ids) {
-		for (var i = data.courses.length - 1; i >= 0; i--) {
-			if (!ids.includes(parseInt(data.courses[i].id, 10))) {
-				data.courses.splice(i, 1);
-			}
-		}
-		return data;
+	var setData = function (data) {
+		sessionStorage.setItem('gmtCoursesLoggedIn', JSON.stringify(data));
 	};
 
 	var getData = function () {
@@ -75,6 +85,19 @@ var app = function () {
 		if (!course) return;
 		return course.lessons.find((function (lesson) {
 			return lesson.id === lessonID;
+		}));
+	};
+
+	var getAjax = function (data, callback) {
+		atomic.ajax({
+			type: 'POST',
+			url: baseURL + '/manage-account/wp-admin/admin-ajax.php',
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest'
+			},
+			data: data
+		}).success((function (data) {
+			callback(data);
 		}));
 	};
 
@@ -149,38 +172,121 @@ var app = function () {
 
 	};
 
-	var logUserIn = function (email, pw) {
-		atomic.ajax({
-			url: '/course-data.json'
-		}).success((function (data) {
-			var courseData = getUserCourses(data, codeMap[pw]);
-			sessionStorage.setItem('gmtCoursesLoggedIn', JSON.stringify({
-				email: email,
-				data: courseData
-			}));
-			document.documentElement.className += ' logged-in';
-			render();
-		})).error((function () {
-			// @todo issue an error on the form
+	var fetchCourses = function () {
+		getAjax({action: 'gmt_courses_get_courses'}, (function (data) {
+			if (data.code === 200) {
+				setData(data.data);
+				render();
+			} else {
+				console.log('fetchCourses failed: ' + data.message);
+			}
 		}));
 	};
 
-	var throwLoginError = function () {
+	var throwFormError = function (msg) {
 		var error = document.querySelector('#form-error');
 		if (!error) return;
-		error.innerHTML = 'Your email and/or passcode are incorrect.';
+		error.innerHTML = msg;
 		error.classList.add('error-message');
 	};
 
 	var processLogin = function (form) {
 		var email = form.querySelector('#email');
 		var pw = form.querySelector('#password');
-		if (!email || !pw || email.value.length < 1 || pw.value.length < 1) return;
-		if (!codeMap[pw.value]) {
-			throwLoginError();
+		if (!email || !pw || email.value.length < 1 || pw.value.length < 1) {
+			throwFormError('Please fill in all fields.');
 			return;
 		}
-		logUserIn(email.value, pw.value);
+		getAjax({
+			action: 'gmt_courses_login',
+			username: email.value,
+			password: pw.value
+		}, (function (data) {
+			if (data.code === 200) {
+				document.documentElement.className += ' logged-in';
+				email.value = '';
+				pw.value = '';
+				fetchCourses();
+			} else {
+				throwFormError(data.message);
+			}
+		}));
+	};
+
+	var processJoin = function (form) {
+		var email = form.querySelector('#email');
+		var pw = form.querySelector('#password');
+		var error = document.querySelector('#form-error');
+		if (!email || !pw || email.value.length < 1 || pw.value.length < 1) {
+			throwFormError('Please fill in all fields.');
+			return;
+		}
+		error.innerHTML = '';
+		getAjax({
+			action: 'gmt_courses_create_user',
+			username: email.value,
+			password: pw.value
+		}, (function (data) {
+			if (data.code === 200) {
+				form.parentNode.innerHTML = '<p>' + data.message + '</p>';
+			} else {
+				throwFormError(data.message);
+			}
+		}));
+	};
+
+	var validate = function () {
+		if (!document.querySelector('#validate-user')) return;
+		var params = getParams(window.location.href);
+		if (!params.email || !params.key) return;
+		getAjax({
+			action: 'gmt_courses_validate_new_account',
+			username: params.email,
+			key: params.key
+		}, (function (data) {
+			throwFormError(data.message);
+		}));
+	};
+
+	var logoutHandler = function (event) {
+		if (!event.target.matches('#logout')) return;
+		event.preventDefault();
+		event.target.parentNode.innerHTML = '<span class="text-muted">Logging out...</span>';
+		getAjax({action: 'gmt_courses_logout'}, (function (data) {
+			sessionStorage.removeItem('gmtCoursesLoggedIn');
+			window.location.reload();
+		}));
+	};
+
+	var formHandler = function (event) {
+		if (event.target.matches('#login-form')) {
+			event.preventDefault();
+			processLogin(event.target);
+			return;
+		}
+
+		if (event.target.matches('#join-form')) {
+			event.preventDefault();
+			processJoin(event.target);
+		}
+	};
+
+	var loadApp = function () {
+		var data = getData();
+		if (data) {
+			if (data.data) {
+				render();
+			} else {
+				fetchCourses();
+			}
+		} else {
+			getAjax({action: 'gmt_courses_is_logged_in'}, (function (data) {
+				if (data.code === 200) {
+					document.documentElement.className += ' logged-in';
+					fetchCourses();
+				}
+			}));
+		}
 	};
 
 
@@ -188,22 +294,10 @@ var app = function () {
 	// Event Listeners & Inits
 	//
 
-	document.addEventListener('submit', (function (event) {
-		if (!event.target.matches('#login-form')) return;
-		event.preventDefault();
-		processLogin(event.target);
-	}), false);
-
-	document.addEventListener('click', (function (event) {
-		if (!event.target.matches('#logout')) return;
-		event.preventDefault();
-		sessionStorage.removeItem('gmtCoursesLoggedIn');
-		window.location.reload();
-	}), false);
-
-	if (getData()) {
-		render();
-	}
+	document.addEventListener('submit', formHandler, false);
+	document.addEventListener('click', logoutHandler, false);
+	validate();
+	loadApp();
 
 };
 /*!
