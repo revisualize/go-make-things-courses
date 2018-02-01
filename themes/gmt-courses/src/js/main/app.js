@@ -175,8 +175,8 @@ var app = function () {
 		});
 	};
 
-	var disableButton = function () {
-		var btn = document.querySelector('#submit');
+	var disableButton = function (form) {
+		var btn = form.querySelector('.btn-submit');
 		if (!btn) return;
 		var processing = btn.getAttribute('data-processing');
 		if (processing) {
@@ -186,8 +186,8 @@ var app = function () {
 		btn.setAttribute('disabled', 'disabled');
 	};
 
-	var enableButton = function () {
-		var btn = document.querySelector('#submit');
+	var enableButton = function (form) {
+		var btn = form.querySelector('#submit');
 		if (!btn) return;
 		var original = btn.getAttribute('data-original');
 		if (original) {
@@ -211,14 +211,14 @@ var app = function () {
 			throwFormError('Please fill in all fields.');
 			return;
 		}
-		disableButton();
+		disableButton(form);
 		error.innerHTML = '';
 		getAjax({
 			action: 'gmt_courses_login',
 			username: email.value,
 			password: pw.value
 		}, function (data) {
-			enableButton();
+			enableButton(form);
 			if (data.code === 200) {
 				document.documentElement.className += ' logged-in';
 				fetchCourses();
@@ -236,14 +236,14 @@ var app = function () {
 			throwFormError('Please fill in all fields.');
 			return;
 		}
-		disableButton();
+		disableButton(form);
 		error.innerHTML = '';
 		getAjax({
 			action: 'gmt_courses_create_user',
 			username: email.value,
 			password: pw.value
 		}, function (data) {
-			enableButton();
+			enableButton(form);
 			if (data.code === 200) {
 				form.parentNode.innerHTML = '<p>' + data.message + '</p>';
 			} else {
@@ -260,14 +260,14 @@ var app = function () {
 			throwFormError('Please fill in all fields.');
 			return;
 		}
-		disableButton();
+		disableButton(form);
 		error.innerHTML = '';
 		getAjax({
 			action: 'gmt_courses_change_password',
 			currentpw: currentPW.value,
 			newpw: newPW.value
 		}, function (data) {
-			enableButton();
+			enableButton(form);
 			if (data.code === 200) {
 				throwFormError(data.message, true);
 				currentPW.value = '';
