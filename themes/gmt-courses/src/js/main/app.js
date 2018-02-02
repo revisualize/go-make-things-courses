@@ -290,14 +290,18 @@ var app = function () {
 	};
 
 	var validate = function () {
+		console.log(0);
 		if (!document.querySelector('#validate-user')) return;
 		var params = getParams(window.location.href);
+		console.log('1');
 		if (!params.email || !params.key) return;
+		console.log('2');
 		getAjax({
 			action: 'gmt_courses_validate_new_account',
 			username: params.email,
 			key: params.key
 		}, function (data) {
+			console.log(data);
 			var success = data.code === 200 ? true : false;
 			throwFormError(data.message, success);
 		});
