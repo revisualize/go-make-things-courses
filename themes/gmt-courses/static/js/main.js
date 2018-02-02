@@ -219,7 +219,9 @@ var app = function () {
 	};
 
 	var throwFormError = function (msg, success) {
+		console.log(msg);
 		var errors = document.querySelectorAll('[data-form-error]');
+		console.log(errors);
 		errors.forEach((function (error) {
 			error.innerHTML = msg;
 			error.className = success ? 'success-message' : 'error-message';
@@ -310,18 +312,14 @@ var app = function () {
 	};
 
 	var validate = function () {
-		console.log(0);
 		if (!document.querySelector('#validate-user')) return;
 		var params = getParams(window.location.href);
-		console.log('1');
 		if (!params.email || !params.key) return;
-		console.log('2');
 		getAjax({
 			action: 'gmt_courses_validate_new_account',
 			username: params.email,
 			key: params.key
 		}, (function (data) {
-			console.log(data);
 			var success = data.code === 200 ? true : false;
 			throwFormError(data.message, success);
 		}));
