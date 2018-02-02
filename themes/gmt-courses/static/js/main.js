@@ -219,9 +219,7 @@ var app = function () {
 	};
 
 	var throwFormError = function (msg, success) {
-		console.log(msg);
 		var errors = document.querySelectorAll('[data-form-error]');
-		console.log(errors);
 		errors.forEach((function (error) {
 			error.innerHTML = msg;
 			error.className = success ? 'success-message' : 'error-message';

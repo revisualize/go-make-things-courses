@@ -14,7 +14,7 @@ You're already logged in.
 
 <div class="app-logged-out">
 	<div id="validate-user">
-		<div data-form-error">
+		<div data-form-error>
 			Validating...
 		</div>
 	</div>
