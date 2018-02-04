@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.7.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.6.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -246,8 +246,7 @@ var app = function () {
 		clearFormError();
 		getAjax({
 			action: 'gmt_courses_login',
-			username: form.querySelector('#username'),
-			email: email.value,
+			username: email.value,
 			password: pw.value
 		}, (function (data) {
 			enableButton();
@@ -272,8 +271,7 @@ var app = function () {
 		clearFormError();
 		getAjax({
 			action: 'gmt_courses_create_user',
-			username: form.querySelector('#username'),
-			email: email.value,
+			username: email.value,
 			password: pw.value
 		}, (function (data) {
 			enableButton();
@@ -298,8 +296,7 @@ var app = function () {
 		getAjax({
 			action: 'gmt_courses_change_password',
 			current_password: currentPW.value,
-			new_password: newPW.value,
-			confirm_password: form.querySelector('#confirm-password')
+			new_password: newPW.value
 		}, (function (data) {
 			enableButton();
 			if (data.code === 200) {
@@ -318,7 +315,7 @@ var app = function () {
 		if (!params.email || !params.key) return;
 		getAjax({
 			action: 'gmt_courses_validate_new_account',
-			email: params.email,
+			username: params.email,
 			key: params.key
 		}, (function (data) {
 			var success = data.code === 200 ? true : false;
