@@ -226,7 +226,8 @@ var app = function () {
 		clearFormError();
 		getAjax({
 			action: 'gmt_courses_login',
-			username: email.value,
+			username: form.querySelector('#username'),
+			email: email.value,
 			password: pw.value
 		}, function (data) {
 			enableButton();
@@ -251,7 +252,8 @@ var app = function () {
 		clearFormError();
 		getAjax({
 			action: 'gmt_courses_create_user',
-			username: email.value,
+			username: form.querySelector('#username'),
+			email: email.value,
 			password: pw.value
 		}, function (data) {
 			enableButton();
@@ -276,7 +278,8 @@ var app = function () {
 		getAjax({
 			action: 'gmt_courses_change_password',
 			current_password: currentPW.value,
-			new_password: newPW.value
+			new_password: newPW.value,
+			confirm_password: form.querySelector('#confirm-password')
 		}, function (data) {
 			enableButton();
 			if (data.code === 200) {
@@ -295,7 +298,7 @@ var app = function () {
 		if (!params.email || !params.key) return;
 		getAjax({
 			action: 'gmt_courses_validate_new_account',
-			username: params.email,
+			email: params.email,
 			key: params.key
 		}, function (data) {
 			var success = data.code === 200 ? true : false;

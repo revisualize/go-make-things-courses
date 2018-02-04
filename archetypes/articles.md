@@ -4,12 +4,12 @@ date: {{ .Date }}
 draft: false
 categories:
 - Accessibility
-- Art &amp; Science
-- Business &amp; Leadership
+- Art and Science
+- Business and Leadership
 - Careers
 - Code
 - CSS
-- Design &amp; UX
+- Design and UX
 - HTML
 - JavaScript
 - Technology
