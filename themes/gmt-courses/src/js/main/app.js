@@ -364,7 +364,8 @@ var app = function () {
 		clearFormError();
 		getAjax({
 			action: 'gmt_courses_reset_password',
-			username: (params.email ? params.email : ''),
+			username: params.email,
+			key: params.key,
 			password: password.value
 		}, function (data) {
 			enableButton();
