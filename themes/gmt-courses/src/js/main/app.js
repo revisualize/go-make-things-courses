@@ -160,7 +160,7 @@ var app = function () {
 		// If this is a reset link, validate the reset key
 		if (params.email && params.key) {
 			getAjax({
-				action: 'is_reset_key_valid',
+				action: 'gmt_courses_is_reset_key_valid',
 				username: params.email,
 				key: params.key
 			}, function (data) {
