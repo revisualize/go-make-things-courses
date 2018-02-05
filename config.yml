@@ -7,7 +7,7 @@ params:
   description: "Vanilla JavaScript for beginners and designers."
   rssURL: "http://feeds.feedburner.com/GoMakeThings"
   rssLimit: 7
-  cacheBust: true
+  cacheBust: false
   version: "1.7.0"
 
 # The language code for the site
