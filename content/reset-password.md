@@ -13,7 +13,7 @@ You're already logged in.
 </div>
 
 <div id="reset-user-password">
-	<div id="password-reset-placeholder">
+	<div class="app-logged-out" id="password-reset-placeholder">
 		<div class="placeholder placeholder-field margin-bottom-small"></div>
 		<div class="placeholder placeholder-btn"></div>
 	</div>
