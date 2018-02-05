@@ -208,9 +208,10 @@ var app = function () {
 
 		// Variables
 		var content = document.querySelector('[data-app]');
+		console.log('content is...');
+		console.log(content);
 		if (!content) return;
 		var type = content.getAttribute('data-app');
-		console.log(type);
 
 		// Render
 		if (type === 'lesson') {
