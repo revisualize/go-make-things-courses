@@ -263,7 +263,6 @@ var app = function () {
 	var processLogin = function (form) {
 		var email = form.querySelector('#email');
 		var pw = form.querySelector('#password');
-		var error = document.querySelector('#form-error');
 		if (!email || !pw || email.value.length < 1 || pw.value.length < 1) {
 			throwFormError('Please fill in all fields.');
 			return;
@@ -288,7 +287,6 @@ var app = function () {
 	var processJoin = function (form) {
 		var email = form.querySelector('#email');
 		var pw = form.querySelector('#password');
-		var error = document.querySelector('#form-error');
 		if (!email || !pw || email.value.length < 1 || pw.value.length < 1) {
 			throwFormError('Please fill in all fields.');
 			return;
@@ -312,7 +310,6 @@ var app = function () {
 	var processChangePW = function (form) {
 		var currentPW = form.querySelector('#current-password');
 		var newPW = form.querySelector('#new-password');
-		var error = document.querySelector('#form-error');
 		if (!currentPW || !newPW || currentPW.value.length < 1 || newPW.value.length < 1) {
 			throwFormError('Please fill in all fields.');
 			return;
@@ -329,6 +326,50 @@ var app = function () {
 				throwFormError(data.message, true);
 				currentPW.value = '';
 				newPW.value = '';
+			} else {
+				throwFormError(data.message);
+			}
+		});
+	};
+
+	var processLostPW = function (form) {
+		var email = form.querySelector('#email');
+		if (!email || email.value.length < 1) {
+			throwFormError('Please enter your email address.');
+			return;
+		}
+		disableButton();
+		clearFormError();
+		getAjax({
+			action: 'gmt_courses_lost_password',
+			username: email.value
+		}, function (data) {
+			enableButton();
+			if (data.code === 200) {
+				form.parentNode.innerHTML = data.message;
+			} else {
+				throwFormError(data.message);
+			}
+		});
+	};
+
+	var processResetPW = function (form) {
+		var password = form.querySelector('#password');
+		var params = getParams(window.location.href);
+		if (!password || password.value.length < 1) {
+			throwFormError('Please enter a new password.');
+			return;
+		}
+		disableButton();
+		clearFormError();
+		getAjax({
+			action: 'gmt_courses_reset_password',
+			username: (params.email ? params.email : ''),
+			password: password.value
+		}, function (data) {
+			enableButton();
+			if (data.code === 200) {
+				form.parentNode.innerHTML = data.message;
 			} else {
 				throwFormError(data.message);
 			}
@@ -360,20 +401,37 @@ var app = function () {
 	};
 
 	var formHandler = function (event) {
+
+		// Login
 		if (event.target.matches('#login-form')) {
 			event.preventDefault();
 			processLogin(event.target);
 		}
 
+		// Join
 		else if (event.target.matches('#join-form')) {
 			event.preventDefault();
 			processJoin(event.target);
 		}
 
+		// Change password
 		else if (event.target.matches('#change-password-form')) {
 			event.preventDefault();
 			processChangePW(event.target);
 		}
+
+		// Lost password
+		else if (event.target.matches('#lost-password-form')) {
+			event.preventDefault();
+			processLostPW(event.target);
+		}
+
+		// Reset password
+		else if (event.target.matches('#reset-password-form')) {
+			event.preventDefault();
+			// processResetPW(event.target);
+		}
+
 	};
 
 	var loadApp = function () {
