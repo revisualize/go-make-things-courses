@@ -143,13 +143,18 @@ var app = function () {
 		content.innerHTML = '<ul>' + resourceList + '</ul>';
 	};
 
-	var renderPasswordReset = function (content) {
+	/**
+	 * Render the password reset page
+	 */
+	var renderPasswordReset = function () {
+
+		if (!document.querySelector('#reset-user-password')) return;
 
 		// Variables
 		var params = getParams(window.location.href);
-		var lost = content.querySelector('#lost-password');
-		var reset = content.querySelector('#reset-password');
-		var placeholder = content.querySelector('#password-reset-placeholder');
+		var lost = document.querySelector('#lost-password');
+		var reset = document.querySelector('#reset-password');
+		var placeholder = document.querySelector('#password-reset-placeholder');
 		if (!lost || !reset || !placeholder) return;
 
 		// If this is a reset link, validate the reset key
@@ -188,8 +193,6 @@ var app = function () {
 
 		// Variables
 		var content = document.querySelector('[data-app]');
-		console.log('content is...');
-		console.log(content);
 		if (!content) return;
 		var type = content.getAttribute('data-app');
 
@@ -200,8 +203,6 @@ var app = function () {
 			renderDashboard(content);
 		} else if (type === 'resources') {
 			renderResources(content);
-		} else if (type === 'reset-password') {
-			renderPasswordReset(content);
 		}
 
 		// Rehighlight code
@@ -390,6 +391,8 @@ var app = function () {
 					fetchCourses();
 				}
 			});
+			validate();
+			renderPasswordReset();
 		}
 	};
 
@@ -400,7 +403,6 @@ var app = function () {
 
 	document.addEventListener('submit', formHandler, false);
 	document.addEventListener('click', logoutHandler, false);
-	validate();
 	loadApp();
 
 };

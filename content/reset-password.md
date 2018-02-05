@@ -12,7 +12,7 @@ You're already logged in.
 {{%/md%}}
 </div>
 
-<div data-app="reset-password">
+<div id="reset-user-password">
 	<div id="password-reset-placeholder">
 		<div class="placeholder placeholder-field margin-bottom-small"></div>
 		<div class="placeholder placeholder-btn"></div>
