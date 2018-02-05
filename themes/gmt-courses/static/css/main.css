@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.6.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.7.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -1569,12 +1569,17 @@ td {
 }
 
 /* line 44, src/sass/components/_placeholder.scss */
+.placeholder-field {
+  height: 3em;
+}
+
+/* line 48, src/sass/components/_placeholder.scss */
 .placeholder-btn {
   height: 3em;
   width: 8em;
 }
 
-/* line 49, src/sass/components/_placeholder.scss */
+/* line 53, src/sass/components/_placeholder.scss */
 .placeholder-li {
   float: left;
   height: 1em;
@@ -1582,12 +1587,12 @@ td {
   width: 75%;
 }
 
-/* line 56, src/sass/components/_placeholder.scss */
+/* line 60, src/sass/components/_placeholder.scss */
 .placeholder-li-short {
   width: 67%;
 }
 
-/* line 60, src/sass/components/_placeholder.scss */
+/* line 64, src/sass/components/_placeholder.scss */
 .placeholder-li-long {
   width: 83%;
 }

@@ -143,6 +143,47 @@ var app = function () {
 		content.innerHTML = '<ul>' + resourceList + '</ul>';
 	};
 
+	var renderPasswordReset = function (content) {
+
+		// Variables
+		var params = getParams(window.location.href);
+		var lost = content.querySelector('#lost-password');
+		var reset = content.querySelector('#reset-password');
+		var placeholder = content.querySelector('#password-reset-placeholder');
+		if (!lost || !reset || !placeholder) return;
+
+		// If this is a reset link, validate the reset key
+		if (params.email && params.key) {
+			getAjax({
+				action: 'is_reset_key_valid',
+				username: params.email,
+				key: params.key
+			}, function (data) {
+
+				// Hide the placeholder
+				placeholder.setAttribute('hidden', 'hidden');
+
+				// If the reset key is valid, show the reset form
+				if (data.code === 200) {
+					reset.removeAttribute('hidden');
+				}
+
+				// Otherwise, show the request a reset form with an error
+				else {
+					lost.removeAttribute('hidden');
+					throwFormError(data.message);
+				}
+
+			});
+			return;
+		}
+
+		// Otherwise, show "request a reset"
+		placeholder.setAttribute('hidden', 'hidden');
+		lost.removeAttribute('hidden');
+
+	};
+
 	var render = function () {
 
 		// Variables
@@ -157,6 +198,8 @@ var app = function () {
 			renderDashboard(content);
 		} else if (type === 'resources') {
 			renderResources(content);
+		} else if (type === 'reset-password') {
+			renderPasswordReset(content);
 		}
 
 		// Rehighlight code
