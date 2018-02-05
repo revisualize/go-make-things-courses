@@ -369,8 +369,11 @@ var app = function () {
 			password: password.value
 		}, function (data) {
 			enableButton();
-			if (data.code === 200) {
+			if (data.code === 200 || data.code === 205) {
 				form.parentNode.innerHTML = data.message;
+				if (data.code === 200) {
+					document.documentElement.className += ' logged-in';
+				}
 			} else {
 				throwFormError(data.message);
 			}

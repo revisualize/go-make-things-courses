@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.7.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.8.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -389,8 +389,11 @@ var app = function () {
 			password: password.value
 		}, (function (data) {
 			enableButton();
-			if (data.code === 200) {
+			if (data.code === 200 || data.code === 205) {
 				form.parentNode.innerHTML = data.message;
+				if (data.code === 200) {
+					document.documentElement.className += ' logged-in';
+				}
 			} else {
 				throwFormError(data.message);
 			}
