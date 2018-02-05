@@ -429,7 +429,7 @@ var app = function () {
 		// Reset password
 		else if (event.target.matches('#reset-password-form')) {
 			event.preventDefault();
-			// processResetPW(event.target);
+			processResetPW(event.target);
 		}
 
 	};
