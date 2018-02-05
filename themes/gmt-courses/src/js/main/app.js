@@ -9,7 +9,7 @@ var app = function () {
 	// Variables
 	//
 
-	var baseURL = 'https://courses.gomakethings.com';
+	var baseURL = 'https://courses.gomakethings.com/controller/wp-admin/admin-ajax.php';
 
 
 	//
@@ -83,7 +83,7 @@ var app = function () {
 	var getAjax = function (data, callback) {
 		atomic.ajax({
 			type: 'POST',
-			url: baseURL + '/manage-account/wp-admin/admin-ajax.php',
+			url: baseURL,
 			headers: {
 				'X-Requested-With': 'XMLHttpRequest'
 			},
