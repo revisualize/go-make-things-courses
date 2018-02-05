@@ -172,6 +172,8 @@ var app = function () {
 		var placeholder = content.querySelector('#password-reset-placeholder');
 		if (!lost || !reset || !placeholder) return;
 
+		console.log('running');
+
 		// If this is a reset link, validate the reset key
 		if (params.email && params.key) {
 			getAjax({
