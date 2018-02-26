@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.8.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.9.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses

@@ -9,7 +9,8 @@ var app = function () {
 	// Variables
 	//
 
-	var baseURL = 'https://courses.gomakethings.com/controller/wp-admin/admin-ajax.php';
+	// var baseURL = 'https://courses.gomakethings.com/controller/wp-admin/admin-ajax.php';
+	var baseURL = 'http://localhost:8888/go-make-things-courses/public/manage-account/wp-admin/admin-ajax.php';
 
 
 	//
@@ -110,6 +111,38 @@ var app = function () {
 		content.innerHTML = '<ul>' + courseList + '</ul>';
 	};
 
+	var renderCourse = function (content) {
+		var course = getCourse(content.getAttribute('data-course'));
+		var placeholder = content.querySelector('#placeholders');
+		var lessons = content.querySelector('#course-lessons');
+		var assets = content.querySelector('#course-assets');
+		if (!course || !placeholder || !lessons || !assets) {
+			content.innerHTML = '<p>You do not have access to this content. Sorry!</p>';
+			return;
+		}
+
+		placeholder.remove();
+		if (course.lessons) {
+			lessons.removeAttribute('hidden');
+		}
+		assets.removeAttribute('hidden');
+
+		if (course.assets) {
+			var assetsList = assets.querySelector('ul');
+			if (!assetsList) return;
+			var guides = document.createElement('li');
+			guides.innerHTML =
+				'<strong>Pocket Guides</strong>' +
+				'<ul>' +
+					(course.assets.pdf ? '<li><a href="' + course.assets.pdf + '">PDF</a></li>' : '') +
+					(course.assets.epub ?'<li><a href="' + course.assets.epub + '">EPUB</a></li>' : '') +
+					(course.assets.mobi ? '<li><a href="' + course.assets.mobi + '">MOBI</a></li>' : '') +
+					(course.assets.html ? '<li><a href="' + course.assets.html + '">HTML</a></li>' : '') +
+				'</ul>';
+			assetsList.appendChild(guides);
+		}
+	};
+
 	var renderLesson = function (content) {
 		var lesson = getLesson(content.getAttribute('data-course'), content.getAttribute('data-lesson'));
 		if (!lesson) {
@@ -201,6 +234,8 @@ var app = function () {
 			renderLesson(content);
 		} else if (type === 'dashboard') {
 			renderDashboard(content);
+		} else if (type === 'course') {
+			renderCourse(content);
 		} else if (type === 'resources') {
 			renderResources(content);
 		}

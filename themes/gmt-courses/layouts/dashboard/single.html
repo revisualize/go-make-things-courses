@@ -37,7 +37,7 @@
 
 	{{ end }}
 
-	<div data-app="lesson" data-course="{{ .Parent.Params.courseid }}" data-lesson="{{ .UniqueID }}" data-lesson-next="{{ $.Scratch.Get "nextPageLink" }}" data-lesson-prev="{{ $.Scratch.Get "prevPageLink" }}">
+	<div data-app="lesson" data-course="{{ .Parent.Params.id }}" data-lesson="{{ .UniqueID }}" data-lesson-next="{{ $.Scratch.Get "nextPageLink" }}" data-lesson-prev="{{ $.Scratch.Get "prevPageLink" }}">
 		<div class="placeholder-video margin-bottom-small" style="padding-top: 57%;"><div class="placeholder placeholder-video-frame"></div></div>
 		<div class="clearfix">
 			<div class="placeholder placeholder-btn float-right"></div>

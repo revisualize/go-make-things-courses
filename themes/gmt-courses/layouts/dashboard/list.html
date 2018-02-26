@@ -6,7 +6,7 @@
 <div class="app-logged-in">
 {{ end }}
 
-	{{ if and .Sections ( not .Params.noLogin ) }}
+	{{ if .Sections }}
 
 		<div data-app="dashboard">
 			<ul>
@@ -19,33 +19,51 @@
 
 	{{ else }}
 
-		{{ $.Scratch.Set "section" "" }}
+		<div data-app="course" data-course="{{ .Params.id }}">
+			<ul id="placeholders" class="list-unstyled">
+				<li><div class="placeholder placeholder-li"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+				<li><div class="placeholder placeholder-li"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+				<li><div class="placeholder placeholder-li"></div></li>
+			</ul>
 
-		{{ range sort .Pages "URL" }}
+			<div id="course-lessons" hidden>
+				{{ $.Scratch.Set "section" "" }}
 
-			{{ if ne ( $.Scratch.Get "section" ) .Params.section }}
-			{{ if ne ( $.Scratch.Get "section" ) "" }}
-			</ol>
-			{{ end }}
-			<h2 class="h5 no-padding-top margin-bottom-small">{{ .Params.section }}</h2>
+				<h2>Lessons</h2>
 
-			<ol>
-			{{ end }}
+				{{ range sort .Pages "URL" }}
 
-				<li>
-					<a href="{{ .URL }}">{{ .Title }}</a>
-				</li>
+					{{ if ne ( $.Scratch.Get "section" ) .Params.section }}
+					{{ if ne ( $.Scratch.Get "section" ) "" }}
+					</ol>
+					{{ end }}
+					<h3 class="h5 no-padding-top margin-bottom-small">{{ .Params.section }}</h3>
 
-			{{ $.Scratch.Set "section" .Params.section }}
+					<ol>
+					{{ end }}
 
-		{{ end }}
-			</ol>
+						<li>
+							<a href="{{ .URL }}">{{ .Title }}</a>
+						</li>
 
-		{{ if not .Sections }}
-			<p>
-				<strong>&lt;/&gt; <a href="{{ .Params.sourceCode }}">Download the Source Code</a></strong>
-			</p>
-		{{ end }}
+					{{ $.Scratch.Set "section" .Params.section }}
+
+				{{ end }}
+					</ol>
+			</div>
+
+			<div id="course-assets" hidden>
+				<h2>Assets</h2>
+
+				<ul>
+					<li><strong><a href="{{ .Params.sourceCode }}">&lt;/&gt; Source Code</a></strong></li>
+				</ul>
+			</div>
+		</div>
 
 	{{ end }}
 

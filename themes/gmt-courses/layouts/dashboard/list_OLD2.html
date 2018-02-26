@@ -1,0 +1,56 @@
+{{ partial "header.html" . }}
+
+{{ partial "content-page.html" . }}
+
+{{ if not .Params.noLogin }}
+<div class="app-logged-in">
+{{ end }}
+
+	{{ if and .Sections ( not .Params.noLogin ) }}
+
+		<div data-app="dashboard">
+			<ul>
+				<li><div class="placeholder placeholder-li"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+				<li><div class="placeholder placeholder-li"></div></li>
+			</ul>
+		</div>
+
+	{{ else }}
+
+		{{ $.Scratch.Set "section" "" }}
+
+		{{ range sort .Pages "URL" }}
+
+			{{ if ne ( $.Scratch.Get "section" ) .Params.section }}
+			{{ if ne ( $.Scratch.Get "section" ) "" }}
+			</ol>
+			{{ end }}
+			<h2 class="h5 no-padding-top margin-bottom-small">{{ .Params.section }}</h2>
+
+			<ol>
+			{{ end }}
+
+				<li>
+					<a href="{{ .URL }}">{{ .Title }}</a>
+				</li>
+
+			{{ $.Scratch.Set "section" .Params.section }}
+
+		{{ end }}
+			</ol>
+
+		{{ if not .Sections }}
+			<p>
+				<strong>&lt;/&gt; <a href="{{ .Params.sourceCode }}">Download the Source Code</a></strong>
+			</p>
+		{{ end }}
+
+	{{ end }}
+
+{{ if not .Params.noLogin }}
+</div>
+{{ end }}
+
+{{ partial "footer.html" . }}
