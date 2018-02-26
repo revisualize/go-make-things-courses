@@ -1,6 +1,6 @@
 # hostname (and path) to the root
-# baseURL: "https://courses.gomakethings.com"
-baseURL: "http://localhost:8888/go-make-things-courses/public/"
+baseURL: "https://courses.gomakethings.com"
+# baseURL: "http://localhost:8888/go-make-things-courses/public/"
 
 # Customer parameters
 params:
