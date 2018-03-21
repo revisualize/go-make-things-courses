@@ -128,7 +128,7 @@ var app = function () {
 		courses.forEach((function (course) {
 			courseList += '<li id="' + course.id + '"><a href="' + course.url + '">' + course.title + '</a></li>';
 		}));
-		content.innerHTML = '<ul>' + courseList + '</ul>';
+		content.innerHTML = '<ol>' + courseList + '</ol>';
 	};
 
 	var renderCourse = function (content) {
@@ -142,7 +142,7 @@ var app = function () {
 		}
 
 		placeholder.remove();
-		if (course.lessons) {
+		if (course.lessons && course.lessons.length > 0) {
 			lessons.removeAttribute('hidden');
 		}
 		assets.removeAttribute('hidden');
