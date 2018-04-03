@@ -36,12 +36,6 @@ var app = function () {
 		return params;
 	};
 
-	var decodeHTML = function (html) {
-		var txt = document.createElement('textarea');
-		txt.innerHTML = html;
-		return txt.value;
-	};
-
 	var setData = function (data) {
 		sessionStorage.setItem('gmtCoursesLoggedIn', JSON.stringify(data));
 	};
@@ -111,41 +105,83 @@ var app = function () {
 		content.innerHTML = '<ol>' + courseList + '</ol>';
 	};
 
+	var buildLessonList = function (course, current) {
+
+		// If no lessons, return an empty string
+		if (!course || !Array.isArray(course.lessons) || course.lessons.length < 1) return '';
+
+		// Variables
+		var section = '';
+		var nav = '<h2>Lessons</h2>';
+
+		course.lessons.forEach(function (lesson) {
+			if (section !== lesson.section) {
+				nav += (section === '' ? '' : '</ol>') + '<h3 class="h5 no-padding-top margin-bottom-small">' + lesson.section + '</h3><ol>';
+			}
+			nav += current && current === lesson.id ? '<li><span class="text-muted">' + lesson.title + '</span></li>' : '<li><a href="' + lesson.url + '">' + lesson.title + '</a></li>';
+			section = lesson.section;
+		});
+		nav += '</ol>';
+
+		return nav;
+
+	};
+
+	var buildLessonAssets = function (course) {
+
+		// If no course assets, return an empty string
+		var hasSource = course.sourceCode && course.sourceCode.length > 1;
+		var hasAssets = course.assets && Object.keys(course.assets).length > 0;
+		if (!course || (!hasSource && !hasAssets)) return '';
+
+		// Create heading
+		var assets = '<h2>Assets</h2><ul>';
+
+		// Add source code link
+		if (hasSource) {
+			assets += '<li><strong><a href="' + course.sourceCode + '">&lt;/&gt; Source Code</a></strong></li>';
+		}
+
+		// Add asset links
+		if (hasAssets) {
+			assets +=
+				'<li>' +
+					'<strong>Pocket Guides</strong>' +
+					'<ul>' +
+						(course.assets.pdf ? '<li><a href="' + course.assets.pdf + '">PDF</a></li>' : '') +
+						(course.assets.epub ?'<li><a href="' + course.assets.epub + '">EPUB</a></li>' : '') +
+						(course.assets.mobi ? '<li><a href="' + course.assets.mobi + '">MOBI</a></li>' : '') +
+						(course.assets.html ? '<li><a href="' + course.assets.html + '">HTML</a></li>' : '') +
+					'</ul>' +
+				'</li>';
+		}
+
+		// Close out list
+		assets += '</ul>';
+
+		return assets;
+
+	};
+
+	var buildCourseNav = function (course, current) {
+		return buildLessonList(course, current) + buildLessonAssets(course);
+	};
+
 	var renderCourse = function (content) {
 		var course = getCourse(content.getAttribute('data-course'));
-		var placeholder = content.querySelector('#placeholders');
-		var lessons = content.querySelector('#course-lessons');
-		var assets = content.querySelector('#course-assets');
-		if (!course || !placeholder || !lessons || !assets) {
+		if (!course) {
 			content.innerHTML = '<p>You do not have access to this content. Sorry!</p>';
 			return;
 		}
 
-		placeholder.remove();
-		if (course.lessons && course.lessons.length > 0) {
-			lessons.removeAttribute('hidden');
-		}
-		assets.removeAttribute('hidden');
-
-		if (course.assets) {
-			var assetsList = assets.querySelector('ul');
-			if (!assetsList) return;
-			var guides = document.createElement('li');
-			guides.innerHTML =
-				'<strong>Pocket Guides</strong>' +
-				'<ul>' +
-					(course.assets.pdf ? '<li><a href="' + course.assets.pdf + '">PDF</a></li>' : '') +
-					(course.assets.epub ?'<li><a href="' + course.assets.epub + '">EPUB</a></li>' : '') +
-					(course.assets.mobi ? '<li><a href="' + course.assets.mobi + '">MOBI</a></li>' : '') +
-					(course.assets.html ? '<li><a href="' + course.assets.html + '">HTML</a></li>' : '') +
-				'</ul>';
-			assetsList.appendChild(guides);
-		}
+		// Render course navigation
+		content.innerHTML = buildCourseNav(course);
 	};
 
 	var renderLesson = function (content) {
 		var lesson = getLesson(content.getAttribute('data-course'), content.getAttribute('data-lesson'));
-		if (!lesson) {
+		var course = getCourse(content.getAttribute('data-course'));
+		if (!lesson || !course) {
 			renderNoAccess(content);
 			return;
 		}
@@ -159,7 +195,7 @@ var app = function () {
 				( next ? '<a class="btn float-right" href="' + next + '">Next Lesson &rarr;</a>' : '' ) +
 				( prev ? '<a href="' + prev + '">&larr; Previous Lesson</a>' : '' ) +
 			'</div>' +
-			decodeHTML(lesson.content);
+			buildCourseNav(course, lesson.id);
 		fluidvids.render();
 	};
 

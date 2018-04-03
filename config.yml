@@ -5,10 +5,10 @@ baseURL: "https://courses.gomakethings.com"
 # Customer parameters
 params:
   description: "Vanilla JavaScript for beginners and designers."
-  rssURL: "http://feeds.feedburner.com/GoMakeThings"
+  rssURL: ""
   rssLimit: 7
   cacheBust: true
-  version: "1.9.0"
+  version: "1.10.0"
 
 # The language code for the site
 languageCode: "en-us"
