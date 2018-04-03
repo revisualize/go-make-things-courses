@@ -8,7 +8,7 @@
 <div{{ if not .Params.noLogin }} class="app-logged-in"{{ end }}>
 
 	<strong class="text-muted"><a href="{{ .Parent.URL }}">{{ .Parent.Title }}: {{ .Params.section }}</a></strong>
-	<h1 class="no-padding-top">{{ .Title }}</h1>
+	<h1 class="no-padding-top" id="play">{{ .Title }}</h1>
 
 	{{ $.Scratch.Set "currentPage" .URL }}
 	{{ $.Scratch.Set "nextPage" "" }}
