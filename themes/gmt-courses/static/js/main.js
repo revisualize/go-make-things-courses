@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.10.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.11.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -134,9 +134,9 @@ var app = function () {
 		var section = '';
 		var nav = '<h2>Lessons</h2>';
 
-		course.lessons.forEach((function (lesson) {
+		course.lessons.forEach((function (lesson, index) {
 			if (section !== lesson.section) {
-				nav += (section === '' ? '' : '</ol>') + '<h3 class="h5 no-padding-top margin-bottom-small">' + lesson.section + '</h3><ol>';
+				nav += (section === '' ? '' : '</ol>') + '<h3 class="h5 no-padding-top margin-bottom-small">' + lesson.section + '</h3><ol start="' + (index + 1) + '">';
 			}
 			nav += current && current === lesson.id ? '<li><span class="text-muted">' + lesson.title + '</span></li>' : '<li><a href="' + lesson.url + '">' + lesson.title + '</a></li>';
 			section = lesson.section;

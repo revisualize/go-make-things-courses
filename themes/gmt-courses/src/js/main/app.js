@@ -114,9 +114,9 @@ var app = function () {
 		var section = '';
 		var nav = '<h2>Lessons</h2>';
 
-		course.lessons.forEach(function (lesson) {
+		course.lessons.forEach(function (lesson, index) {
 			if (section !== lesson.section) {
-				nav += (section === '' ? '' : '</ol>') + '<h3 class="h5 no-padding-top margin-bottom-small">' + lesson.section + '</h3><ol>';
+				nav += (section === '' ? '' : '</ol>') + '<h3 class="h5 no-padding-top margin-bottom-small">' + lesson.section + '</h3><ol start="' + (index + 1) + '">';
 			}
 			nav += current && current === lesson.id ? '<li><span class="text-muted">' + lesson.title + '</span></li>' : '<li><a href="' + lesson.url + '">' + lesson.title + '</a></li>';
 			section = lesson.section;
