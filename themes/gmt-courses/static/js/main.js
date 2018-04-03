@@ -168,10 +168,10 @@ var app = function () {
 				'<li>' +
 					'<strong>Pocket Guides</strong>' +
 					'<ul>' +
-						(course.assets.pdf ? '<li><a href="' + course.assets.pdf + '">PDF</a></li>' : '') +
-						(course.assets.epub ?'<li><a href="' + course.assets.epub + '">EPUB</a></li>' : '') +
-						(course.assets.mobi ? '<li><a href="' + course.assets.mobi + '">MOBI</a></li>' : '') +
-						(course.assets.html ? '<li><a href="' + course.assets.html + '">HTML</a></li>' : '') +
+						(course.assets.pdf ? '<li><a href="' + course.assets.pdf + '" download>PDF</a></li>' : '') +
+						(course.assets.epub ?'<li><a href="' + course.assets.epub + '" download>EPUB</a></li>' : '') +
+						(course.assets.mobi ? '<li><a href="' + course.assets.mobi + '" download>MOBI</a></li>' : '') +
+						(course.assets.html ? '<li><a href="' + course.assets.html + '" download>HTML</a></li>' : '') +
 					'</ul>' +
 				'</li>';
 		}
