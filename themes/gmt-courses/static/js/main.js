@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.12.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.13.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -209,7 +209,7 @@ var app = function () {
 		var prev = content.getAttribute('data-lesson-prev');
 		content.innerHTML =
 			'<div class="margin-bottom">' +
-				'<iframe src="https://player.vimeo.com/video/' + lesson.video + '?title=0&byline=0&portrait=0" width="640" height="388" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>' +
+				'<iframe src="https://player.vimeo.com/video/' + lesson.video + '?title=0&byline=0&portrait=0&autoplay=1" width="640" height="388" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>' +
 			'</div>' +
 			'<div class="clearfix margin-bottom">' +
 				( next ? '<a class="btn float-right" href="' + next + '#play">Next Lesson &rarr;</a>' : '' ) +
