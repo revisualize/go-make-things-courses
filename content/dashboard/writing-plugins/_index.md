@@ -8,6 +8,7 @@ id: 22656
 courseid: ["22656_2", "22656_3"]
 bookid: ["22656_1", "22656_3"]
 sourceCode: "https://github.com/cferdinandi/writing-plugins-source-code"
+all: "https://gomakethings.com/products/writing-plugins-vw3JkC8p/writing-plugins.zip"
 pdf: "https://gomakethings.com/products/writing-plugins-vw3JkC8p/writing-plugins.pdf"
 epub: "https://gomakethings.com/products/writing-plugins-vw3JkC8p/writing-plugins.epub"
 mobi: "https://gomakethings.com/products/writing-plugins-vw3JkC8p/writing-plugins.mobi"

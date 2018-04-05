@@ -8,6 +8,7 @@ id: 22696
 courseid: ["22696_2", "22696_3"]
 bookid: ["22696_1", "22696_3"]
 sourceCode: "https://github.com/cferdinandi/string-array-object-source-code"
+all: "https://gomakethings.com/products/strings-arrays-objects-WxB22GzR/strings-arrays-objects.zip"
 pdf: "https://gomakethings.com/products/strings-arrays-objects-WxB22GzR/strings-arrays-objects.pdf"
 epub: "https://gomakethings.com/products/strings-arrays-objects-WxB22GzR/strings-arrays-objects.epub"
 mobi: "https://gomakethings.com/products/strings-arrays-objects-WxB22GzR/strings-arrays-objects.mobi"

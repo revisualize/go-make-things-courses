@@ -8,6 +8,7 @@ id: 22686
 courseid: ["22686_2", "22686_3"]
 bookid: ["22686_1", "22686_3"]
 sourceCode: "https://github.com/cferdinandi/dom-injection-source-code"
+all: "https://gomakethings.com/products/dom-injection-and-traversal-t4gvsVq9/dom-injection-and-traversal.zip"
 pdf: "https://gomakethings.com/products/dom-injection-and-traversal-t4gvsVq9/dom-injection-and-traversal.pdf"
 epub: "https://gomakethings.com/products/dom-injection-and-traversal-t4gvsVq9/dom-injection-and-traversal.epub"
 mobi: "https://gomakethings.com/products/dom-injection-and-traversal-t4gvsVq9/dom-injection-and-traversal.mobi"

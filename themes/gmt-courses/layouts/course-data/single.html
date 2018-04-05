@@ -5,7 +5,7 @@
 		{{- range sort .Pages "URL" -}}
 			{{- $.Scratch.Add "lessons" ( dict "id" .UniqueID "title" .Title "url" .URL "video" ( replace .Params.video "https://vimeo.com/" "" ) "section" .Params.section ) -}}
 		{{- end -}}
-		{{- $.Scratch.Add "courses" ( dict "id" .Params.id "courseid" .Params.courseid "bookid" .Params.bookid "title" .Title "url" .URL "lessons" ( $.Scratch.Get "lessons" ) "sourceCode" .Params.sourceCode "assets" ( dict "pdf" .Params.pdf "epub" .Params.epub "mobi" .Params.mobi "html" .Params.html ) ) -}}
+		{{- $.Scratch.Add "courses" ( dict "id" .Params.id "courseid" .Params.courseid "bookid" .Params.bookid "title" .Title "url" .URL "lessons" ( $.Scratch.Get "lessons" ) "sourceCode" .Params.sourceCode "assets" ( dict "all" .Params.all "pdf" .Params.pdf "epub" .Params.epub "mobi" .Params.mobi "html" .Params.html ) ) -}}
 	{{- end -}}
 {{- end -}}
 {{- $.Scratch.Add "resources" slice -}}

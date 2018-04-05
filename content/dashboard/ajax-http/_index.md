@@ -8,6 +8,7 @@ id: 22689
 courseid: ["22689_2", "22689_3"]
 bookid: ["22689_1", "22689_3"]
 sourceCode: "https://github.com/cferdinandi/ajax-source-code"
+all: "https://gomakethings.com/products/ajax-and-http-VAzAh87Y/ajax-http.zip"
 pdf: "https://gomakethings.com/products/ajax-and-http-VAzAh87Y/ajax-http.pdf"
 epub: "https://gomakethings.com/products/ajax-and-http-VAzAh87Y/ajax-http.epub"
 mobi: "https://gomakethings.com/products/ajax-and-http-VAzAh87Y/ajax-http.mobi"

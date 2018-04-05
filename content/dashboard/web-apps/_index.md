@@ -8,6 +8,7 @@ id: 22882
 courseid: ["22882_2", "22882_3"]
 bookid: ["22882_1", "22882_3"]
 sourceCode: "https://github.com/cferdinandi/web-apps-source-code/"
+all: "https://gomakethings.com/products/web-apps-FnXdW76c/web-apps.zip"
 pdf: "https://gomakethings.com/products/web-apps-FnXdW76c/web-apps.pdf"
 epub: "https://gomakethings.com/products/web-apps-FnXdW76c/web-apps.epub"
 mobi: "https://gomakethings.com/products/web-apps-FnXdW76c/web-apps.mobi"

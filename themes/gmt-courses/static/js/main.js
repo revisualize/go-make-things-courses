@@ -168,6 +168,7 @@ var app = function () {
 				'<li>' +
 					'<strong>Pocket Guides</strong>' +
 					'<ul>' +
+						(course.assets.all ? '<li><a href="' + course.assets.all + '">All Files</a></li>' : '') +
 						(course.assets.pdf ? '<li><a href="' + course.assets.pdf + '" download>PDF</a></li>' : '') +
 						(course.assets.epub ?'<li><a href="' + course.assets.epub + '" download>EPUB</a></li>' : '') +
 						(course.assets.mobi ? '<li><a href="' + course.assets.mobi + '" download>MOBI</a></li>' : '') +
