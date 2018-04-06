@@ -1,5 +1,5 @@
 ---
-title: "Strings, Arrays, and Objects (in development)"
+title: "Strings, Arrays, and Objects"
 date: 2018-01-15T21:38:44-05:00
 draft: false
 weight: 20
