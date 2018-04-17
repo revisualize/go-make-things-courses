@@ -6,6 +6,8 @@
 		<title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
 		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
+		{{ if and (isset .Params "redirect") (ne .Params.redirect "") }}<script>window.location.href = '{{ .Params.redirect }}';</script>{{ end }}
+
 		<!-- Mobile Screen Resizing -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 

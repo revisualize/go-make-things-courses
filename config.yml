@@ -8,7 +8,7 @@ params:
   rssURL: ""
   rssLimit: 7
   cacheBust: true
-  version: "1.13.0"
+  version: "1.14.0"
 
 # The language code for the site
 languageCode: "en-us"
@@ -21,7 +21,9 @@ theme: "gmt-courses"
 
 # Permalinks
 # See "content-management/permalinks"
-permalinks: /:filename/
+permalinks:
+  courses: /:sections/:title/
+  academy: /:sections/:title/
 
 # Use absolute URLs
 canonifyURLs: true

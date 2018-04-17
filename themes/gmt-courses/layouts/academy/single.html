@@ -1,0 +1,76 @@
+{{ partial "header.html" . }}
+
+{{ if not .Params.noLogin }}
+	{{ partial "login.html" }}
+{{ end }}
+
+
+<div{{ if not .Params.noLogin }} class="app-logged-in"{{ end }}>
+
+	<strong class="text-muted"><a href="{{ .Parent.URL }}">{{ .Params.section }}</a></strong>
+	<h1 class="no-padding-top" id="play">{{ .Title }}</h1>
+
+	{{ $.Scratch.Set "currentPage" .URL }}
+	{{ $.Scratch.Set "nextPage" "" }}
+	{{ $.Scratch.Set "prevPage" false }}
+
+	{{ range .Parent.Pages }}
+
+		{{ if eq ( $.Scratch.Get "currentPage" ) .URL }}
+			{{ if eq ( $.Scratch.Get "nextPage" ) "" }}
+				{{ $.Scratch.Set "nextPageLink" .Parent.URL }}
+			{{ else }}
+				{{ $.Scratch.Set "nextPageLink" ( $.Scratch.Get "nextPage" ) }}
+			{{ end }}
+		{{ end }}
+
+		{{ if ( $.Scratch.Get "prevPage" ) }}
+			{{ $.Scratch.Set "prevPageLink" .URL }}
+			{{ $.Scratch.Set "prevPage" false }}
+		{{ end }}
+
+		{{ if eq ( $.Scratch.Get "currentPage" ) .URL }}
+			{{ $.Scratch.Set "prevPage" true }}
+		{{ end }}
+
+		{{ $.Scratch.Set "nextPage" .URL }}
+
+	{{ end }}
+
+	<div data-app="academy" data-session="{{ .Parent.Params.id }}" data-academy="{{ .UniqueID }}" data-lesson-next="{{ $.Scratch.Get "nextPageLink" }}" data-lesson-prev="{{ $.Scratch.Get "prevPageLink" }}">
+		<div class="placeholder-video margin-bottom" style="padding-top: 57%;"><div class="placeholder placeholder-video-frame"></div></div>
+
+		<div class="clearfix margin-bottom">
+			<div class="placeholder placeholder-li"></div>
+			<div class="placeholder placeholder-li placeholder-li-long"></div>
+			<div class="placeholder placeholder-li placeholder-li-short"></div>
+		</div>
+
+		<div class="clearfix margin-bottom">
+			<div class="placeholder placeholder-li"></div>
+			<div class="placeholder placeholder-li placeholder-li-short"></div>
+			<div class="placeholder placeholder-li placeholder-li-long"></div>
+			<div class="placeholder placeholder-li"></div>
+			<div class="placeholder placeholder-li placeholder-li-long"></div>
+			<div class="placeholder placeholder-li placeholder-li-short"></div>
+			<div class="placeholder placeholder-li"></div>
+		</div>
+
+		<div class="clearfix margin-bottom">
+			<div class="placeholder placeholder-li"></div>
+			<div class="placeholder placeholder-li placeholder-li-short"></div>
+			<div class="placeholder placeholder-li placeholder-li-long"></div>
+		</div>
+
+		<div class="clearfix margin-bottom">
+			<div class="placeholder placeholder-li"></div>
+			<div class="placeholder placeholder-li placeholder-li-short"></div>
+			<div class="placeholder placeholder-li placeholder-li-long"></div>
+			<div class="placeholder placeholder-li"></div>
+			<div class="placeholder placeholder-li placeholder-li-long"></div>
+		</div>
+	</div>
+
+</div>
+
+{{ partial "footer.html" . }}

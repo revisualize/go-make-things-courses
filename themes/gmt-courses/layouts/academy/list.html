@@ -1,0 +1,40 @@
+{{ partial "header.html" . }}
+
+{{ partial "content-page.html" . }}
+
+{{ if not .Params.noLogin }}
+<div class="app-logged-in">
+{{ end }}
+
+	{{ if .Sections }}
+
+		<div data-app="dashboard">
+			<ul>
+				<li><div class="placeholder placeholder-li"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+				<li><div class="placeholder placeholder-li"></div></li>
+			</ul>
+		</div>
+
+	{{ else }}
+
+		<div data-app="session" data-session="{{ .Params.id }}">
+			<ul class="list-unstyled">
+				<li><div class="placeholder placeholder-li"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+				<li><div class="placeholder placeholder-li"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-long"></div></li>
+				<li><div class="placeholder placeholder-li placeholder-li-short"></div></li>
+				<li><div class="placeholder placeholder-li"></div></li>
+			</ul>
+		</div>
+
+	{{ end }}
+
+{{ if not .Params.noLogin }}
+</div>
+{{ end }}
+
+{{ partial "footer.html" . }}

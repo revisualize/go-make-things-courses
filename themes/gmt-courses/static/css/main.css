@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.13.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.14.0: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -1611,6 +1611,20 @@ td {
 .js-x-ray .x-ray {
   display: block;
   visibility: visible;
+}
+
+/**
+ * @section FluidVids
+ * Styles for fluidvids.js
+ */
+/* line 6, src/sass/components/_fluidvids.scss */
+.fluidvids {
+  margin-bottom: 1.5625em;
+}
+
+/* line 9, src/sass/components/_fluidvids.scss */
+.type-courses .fluidvids {
+  margin-bottom: 0.5em;
 }
 
 /**
