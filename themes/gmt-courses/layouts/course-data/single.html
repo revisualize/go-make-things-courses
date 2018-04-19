@@ -15,7 +15,7 @@
 		{{- range .Pages -}}
 			{{- $.Scratch.Add "lessons" ( dict "id" .UniqueID "title" .Title "url" .URL "sourceCode" .Params.sourceCode "section" .Params.section  "content" ( .Content | markdownify | htmlEscape ) ) -}}
 		{{- end -}}
-		{{- $.Scratch.Add "academy" ( dict "id" .Params.id "slack" .Params.slack "title" .Title "url" .URL "lessons" ( $.Scratch.Get "lessons" ) ) -}}
+		{{- $.Scratch.Add "academy" ( dict "id" .Params.id "title" .Title "url" .URL "lessons" ( $.Scratch.Get "lessons" ) ) -}}
 	{{- end -}}
 {{- end -}}
 {{- $.Scratch.Add "resources" slice -}}

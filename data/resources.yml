@@ -1,6 +1,6 @@
 slack:
     title: "Private Slack Channel"
-    url: "https://gomakethings.com/checkout/slack-signup/"
+    url: "/slack-signup/"
 
 toolkit:
     title: "The Vanilla JS Toolkit"

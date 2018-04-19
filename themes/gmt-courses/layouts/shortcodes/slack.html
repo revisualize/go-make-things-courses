@@ -1,0 +1,22 @@
+<p><strong>By joining the Vanilla JS Slack Team, you agree that you have read and will follow our <a href="/slack-guidelines/">Code of Conduct</a> and that you are at least 18 years old.</strong></p>
+
+<p>{{ if .Get "academy" }}If you're already a member, this will add you to the private channel for your Academy program. You can log in at <a href="https://vanillajs.slack.com">https://vanillajs.slack.com</a>.{{ else }}If you're already a member, log in at <a href="https://vanillajs.slack.com">https://vanillajs.slack.com</a>.{{ end }}</p>
+
+<form id="slack-signup" novalidate>
+	<div class="app-logged-out">
+		<div class="tarpit">
+			<label for="slack-name">If you're a human, don't fill this field out</label>
+			<input type="text" id="slack-name" name="name">
+		</div>
+		<div>
+			<label for="slack-email">Your Email Address</label>
+			<input type="email" id="slack-email" name="email">
+		</div>
+	</div>
+	<input type="hidden" name="X6m9cezsgnLrj3ip2RhCGf2z" value="sHakwAdGshJ7UpZaTnKjDkxMTpCZpv6x6zHtFBYBeqbDrKVYNf2UBUBxWrxh4HgW">
+	{{ if .Get "channels" }}<input type="hidden" id="channels" value="{{ .Get "channels" }}">{{ end }}
+	<div>
+		<button type="submit" data-processing="Sending Your Invite..." class="btn">Get Your Invite</button>
+	</div>
+	<div id="slack-status"></div>
+</form>

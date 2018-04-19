@@ -11,5 +11,12 @@ fluidvids.init({
 // Load app
 app();
 
+// Handle Slack registration
+slack(function (response) {
+	if (response.code === 200) {
+		window.location.href = '/slack-success/';
+	}
+});
+
 // Toggle password visibility
 xray.init();
