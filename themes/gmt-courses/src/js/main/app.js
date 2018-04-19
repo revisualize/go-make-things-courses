@@ -9,8 +9,8 @@ var app = function () {
 	// Variables
 	//
 
-	// var baseURL = 'https://courses.gomakethings.com/controller/wp-admin/admin-ajax.php';
-	var baseURL = 'http://localhost:8888/go-make-things-courses/public/manage-account/wp-admin/admin-ajax.php';
+	var baseURL = 'https://courses.gomakethings.com/controller/wp-admin/admin-ajax.php';
+	// var baseURL = 'http://localhost:8888/go-make-things-courses/public/manage-account/wp-admin/admin-ajax.php';
 
 
 	//
