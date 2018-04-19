@@ -1,5 +1,5 @@
 /*!
- * gmt-courses v1.15.0: The theme for courses.gomakethings.com
+ * gmt-courses v1.15.1: The theme for courses.gomakethings.com
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/go-make-things-courses
@@ -2016,8 +2016,8 @@ var slack = function (callback) {
 	};
 
 	// Endpoint
-	// var endpoint = 'https://gomakethings.com/checkout/wp-json/gmt-slack/v1/invite?';
-	var endpoint = 'http://localhost:8888/go-make-things-checkout/wp-json/gmt-slack/v1/invite?';
+	var endpoint = 'https://gomakethings.com/checkout/wp-json/gmt-slack/v1/invite?';
+	// var endpoint = 'http://localhost:8888/go-make-things-checkout/wp-json/gmt-slack/v1/invite?';
 
 
 	//

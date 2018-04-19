@@ -20,8 +20,8 @@ var slack = function (callback) {
 	};
 
 	// Endpoint
-	// var endpoint = 'https://gomakethings.com/checkout/wp-json/gmt-slack/v1/invite?';
-	var endpoint = 'http://localhost:8888/go-make-things-checkout/wp-json/gmt-slack/v1/invite?';
+	var endpoint = 'https://gomakethings.com/checkout/wp-json/gmt-slack/v1/invite?';
+	// var endpoint = 'http://localhost:8888/go-make-things-checkout/wp-json/gmt-slack/v1/invite?';
 
 
 	//
