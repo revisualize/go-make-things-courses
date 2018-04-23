@@ -1352,7 +1352,7 @@ td {
  * Adds zebra striping
  */
 /* line 35, src/sass/components/_tables.scss */
-.table-striped tbody tr:nth-child(odd) {
+tbody tr:nth-child(odd) {
   background-color: #f7f7f7;
 }
 

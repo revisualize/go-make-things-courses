@@ -7,7 +7,7 @@ noTitle: false
 id: "28868_1"
 ---
 
-Welcome to the May 2018 session of the Vanilla JS Academy. In the next week or two, I'll some welcome material to help get you pumped up for the awesome stuff you're going to do in this program.
+Welcome to the May 2018 session of the Vanilla JS Academy. The program starts on May 14.
 
 In the meantime, if you have any questions, please contact me at {{<email>}}.
 
